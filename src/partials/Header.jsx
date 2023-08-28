@@ -3,6 +3,7 @@ import { Link, useNavigate } from 'react-router-dom';
 import { routes } from '../configs';
 import images from '../assets/images';
 import useAuthContext from '../hooks/useAuthContext';
+import classNames from 'classnames';
 
 const Header = ({ isShowButtons = true }) => {
     const navigate = useNavigate();
@@ -15,7 +16,15 @@ const Header = ({ isShowButtons = true }) => {
     };
 
     return (
-        <header className='w-primary flex items-center justify-between mt-[44px]'>
+        <header
+            className={classNames(
+                'w-primary flex items-center justify-between',
+                {
+                    'mt-[44px]': isShowButtons,
+                    'mt-[55px]': !isShowButtons,
+                }
+            )}
+        >
             <Link to={routes.HOME}>
                 <img src={images.logo} alt='web-logo' />
             </Link>
